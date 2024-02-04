@@ -5,12 +5,23 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+<<<<<<< HEAD
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
 var session = require('express-session');
 var SQLiteStore = require('connect-sqlite3')(session);
 var passport = require('passport');
 
+=======
+var passport = require('passport');
+
+var session = require('express-session');
+
+var SQLiteStore = require('connect-sqlite3')(session);
+
+var indexRouter = require('./routes/index');
+var authRouter = require('./routes/auth');
+>>>>>>> 6ac9c4db1d47e5140a82a8657c343cc517ddbc84
 var app = express();
 
 app.locals.pluralize = require('pluralize');
@@ -31,6 +42,15 @@ app.use(session({
   store: new SQLiteStore({ db: 'sessions.db', dir: './var/db' })
 }));
 
+app.use(passport.authenticate('session'));
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false,
+  store: new SQLiteStore({ db: 'sessions.db', dir: './var/db' })
+}));
 app.use(passport.authenticate('session'));
 
 app.use('/', indexRouter);

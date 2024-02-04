@@ -42,7 +42,11 @@
     "mkdirp": "^1.0.4",
     "morgan": "~1.9.1",
     "passport": "^0.7.0",
+<<<<<<< HEAD
     "passport-facebook": "^3.0.0",
+=======
+    "passport-local": "^1.0.0",
+>>>>>>> 6ac9c4db1d47e5140a82a8657c343cc517ddbc84
     "pluralize": "^8.0.0",
     "sqlite3": "^5.0.2"
   }
